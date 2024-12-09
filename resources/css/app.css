@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #eef2f5;
+    color: #333;
+}
+.container {
+    width: 70%;
+    margin: 20px auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.header {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    margin: 50px 100px;
+}
+.header img {
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.header .info {
+    flex: 1;
+}
+.header .info h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+.header .info p {
+    margin: 5px 0;
+}
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+.contact-info div {
+    width: 50%;
+    margin: 5px 0;
+}
+.contact-info div i {
+    margin-right: 10px;
+}
+.additional-info {
+    margin-top: 0px;
+    margin-bottom: 20px;
+    color: #666;
+}
+.additional-info p {
+    display: inline;
+    margin-right: 15px;
+}
+.section {
+    margin: 50px 100px 20px 100px;
+    width: 80%;
+}
+.section h2 {
+    margin-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 5px;
+}
+.section p {
+    font-size: 17px;
+}
+.collapsible {
+    background-color: rgba(238, 238, 238, 0.5);
+    border-radius: 0.35em;
+    color: #333;
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px 0px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+.collapsible:hover {
+    background-color: #ccc;
+}
+.content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+}
+.content p {
+    padding: 10px 0;
+}
+.link {
+    color: #007bff;
+}
+.image {
+    max-width: 35em !important;
+    max-height: 20em !important;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+.curriculo{
+    margin-right: 11.35em; 
+    font-size: 18px;
+    text-align: right;
+}
+
+.startend_date {
+    margin-left: 2.15em; 
+    color: #00000033;
+}
+
+.file_ident {
+    display: inline;
+}
+
+
+@media only screen and (max-width: 1000px) {
+
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0% !important;
+    }
+
+    .header {
+        width: 90%;
+        display: flex;
+        align-items: center;
+        padding-bottom: 20px;
+        margin: 35px 0px;
+    }
+
+    .header img {
+        border-radius: 50%;
+        margin-right: 20px;
+        margin-top: 5px;
+        max-width: 100px;
+        align-self: flex-start;
+    }
+
+    .curriculo{
+        font-size: 18px;
+    }
+
+    .contact-info {
+        width: 90%;
+    }
+
+    .contact-info div {
+        width: 100%;
+        margin: 5px 10px;
+    }
+
+    .section {
+        margin: 50px 0px;
+        width: 90%;
+    }
+
+    .startend_date {
+        margin-left: 0em; 
+    }
+
+    .file_ident {
+        display: block;
+        width: 90%; 
+    }
+}

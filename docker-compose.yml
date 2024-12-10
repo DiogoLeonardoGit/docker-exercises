@@ -1,32 +1,17 @@
 version: "3.9"
 
 services:
-  frontend:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: laravel-frontend
+    container_name: laravel-app
     working_dir: /var/www
-    volumes:
-      - .:/var/www
     networks:
       - app-network
     ports:
-      - "9000:9000"
-
-  backend:
-    image: php:8.1-fpm
-    container_name: laravel-backend
-    working_dir: /var/www
-    volumes:
-      - .:/var/www
-    networks:
-      - app-network
-    command: php artisan serve --host=0.0.0.0 --port=8080
-    depends_on:
-      - frontend
-    ports:
-      - "8080:8080"
+      - "9000:9000"   # Port for Laravel's web server (UI + API)
+    command: php artisan serve --host=0.0.0.0 --port=9000   # Ensure the app listens on 0.0.0.0
 
   db:
     image: mysql:5.7
@@ -36,11 +21,10 @@ services:
       MYSQL_DATABASE: admin
     volumes:
       - db-data:/var/lib/mysql
-      - ./database/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - app-network
     ports:
-      - "3306:3306"
+      - "3306:3306"   # MySQL port
 
 volumes:
   db-data:

@@ -1,27 +1,32 @@
-# Set the base image
+# Set the base image to PHP with FPM support
 FROM php:8.1-fpm
 
-# Install dependencies
-RUN apt-get update && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip git
+# Install necessary dependencies for Laravel
+RUN apt-get update && apt-get install -y \
+    npm \
+    nano \
+    libpng-dev libjpeg-dev libfreetype6-dev \
+    libzip-dev git unzip && \
+    docker-php-ext-configure gd --with-freetype --with-jpeg && \
+    docker-php-ext-install gd pdo pdo_mysql zip
 
-# Install PHP extensions
-RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-RUN docker-php-ext-install gd pdo pdo_mysql
-
-# Set the working directory inside the container
+# Set working directory
 WORKDIR /var/www
 
-# Copy the existing application directory contents to the container
+# Copy the Laravel project files into the container
 COPY . .
 
-# Install Composer
+# Install Composer (PHP package manager)
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install dependencies
-RUN composer install
+# Install PHP dependencies using Composer
+RUN composer install --no-dev --optimize-autoloader
 
-# Expose the port Laravel will run on
+# Install npm dependencies and run dev
+RUN npm install
+
+# Expose the port that Laravel will run on
 EXPOSE 9000
 
-# Start the PHP-FPM server
+# Start PHP-FPM
 CMD ["php-fpm"]

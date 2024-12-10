@@ -1,29 +1,9 @@
-# docker-exercises
-
-Este repositorio destina-se à entrega dos exercicios propostos no ambito da formação de docker.
-Neste projeto é apresentado um E-Portfolio com as minhas experiencias e projetos pessoais. Desenvolvido maioritariamente em PHP, usando a framework laravel para o Backend e blade para o Frontend.
-
-Quando executado sem erros, o docker-compose (docker-compose up --build -d) deverá fazer o deploy com sucesso da web app e respetiva bd, sendo acedida através do endereço: "http://localhost:9000/".
-
-São criados 2 containers:
-laravel-app - Aplicação web (portfolio)
-mysql-db - base de dados com os projetos e relacionados do portfolio
-
-Em caso de falha ou problemas no build do dockerfile, pode ser removida a ultima linha (CMD), devendo ser executados manualmente os seguintes comandos dentro do container laravel-app:
-php-fpm;
-php artisan key:generate;
-php artisan migrate; 
-php artisan db:seed --class=SeederSQLFileSeeder;
-php artisan storage:link;
-npm run build --host;
-
 <a id="readme-top"></a>
 
-<!-- PROJECT SHIELDS -->
-
 <!-- PROJECT LOGO -->
+Docker exercise - E-Portfolio
 <br />
-<div align="center">
+<div>
 
 ## About The Project
 

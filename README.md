@@ -32,33 +32,45 @@ Desenvolvido maioritariamente em PHP, usando a framework laravel para o Backend 
 
 The user must have git and docker with wsl installed and configured in it's local machine.
 
+## Installation
+
+Para fazer o deploy dos containers é necessario fazer build da imagem para a Web App. Este processo pode ser feito através do comando:
+
+* docker build -t custom_laravel .
+
+De seguida, basta clonar o projeto para a maquina e executar o comando:
+
+* docker-compose -f docker-compose-deploy.yml up -d
+
+(Pode ser necessário esperar alguns segundos dependendo do hardware da máquina)
+
+Em caso de falha ou problemas no build do dockerfile, pode ser removida a ultima linha (CMD), devendo ser executados manualmente os seguintes comandos dentro do container laravel-app:
+
+* composer update &&
+* php artisan key:generate && 
+* php artisan migrate:fresh --force && 
+* php artisan db:seed --class=SeederSQLFileSeeder --force && 
+* php artisan storage:link && 
+* npm run build --host && 
+* php artisan serve --host=0.0.0.0 --port=9000
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Quando executado sem erros, o docker-compose deverá fazer o deploy com sucesso da web app e respetiva bd, sendo acedida através do endereço:
+Quando executado sem erros, o docker-compose deverá fazer o deploy com sucesso da web app, respetiva bd, prometheus, grafa, node-explorer e glances, sendo acedidos através dos endereços:
 
-* http://localhost:9000/
+* APP - http://localhost:9000/
+* Grafana - http://localhost:3000/
+* Prometheus - http://localhost:9090/
+* Node Exporter -  http://localhost:9100/
+* Glances - http://localhost:61208/
 
 São criados 2 containers:
 * laravel-app - Aplicação web (portfolio)
 * mysql-db - base de dados com os projetos e relacionados do portfolio
 
-## Installation
-
-Para instalar basta clonar o projeto para a maquina e executar o comando:
-
-* docker-compose up --build -d
-
-Em caso de falha ou problemas no build do dockerfile, pode ser removida a ultima linha (CMD), devendo ser executados manualmente os seguintes comandos dentro do container laravel-app:
-
-* php-fpm;
-* php artisan key:generate;
-* php artisan migrate; 
-* php artisan db:seed --class=SeederSQLFileSeeder;
-* php artisan storage:link;
-* npm run build --host;
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTACT -->
 ## Contact

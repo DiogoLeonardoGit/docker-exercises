@@ -2,9 +2,7 @@ version: "3.9"
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: custom_laravel:latest
     container_name: laravel-app
     networks:
       - app-network
@@ -14,6 +12,7 @@ services:
       - "9000:9000"   # Port for Laravel's web server (UI + API)
     command: >
       bash -c "
+        composer update &&
         php artisan key:generate && 
         php artisan migrate:fresh --force && 
         php artisan db:seed --class=SeederSQLFileSeeder --force && 
@@ -25,7 +24,7 @@ services:
       - db
 
   db:
-    image: mysql:latest   # Latest stable MySQL version
+    image: mysql:8   # Latest stable MySQL version
     container_name: mysql-db
     environment:
       MYSQL_ROOT_PASSWORD: admin

@@ -1,5 +1,5 @@
 # Set the base image to PHP with FPM support
-FROM php:8.1-fpm-alpine
+FROM php:8.1-fpm
 
 # Install necessary dependencies for Laravel and Composer in one step
 RUN apt-get update && apt-get install -y \
